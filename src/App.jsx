@@ -11,7 +11,7 @@ import EditBookForm from './components/EditBookCard'
 function App() {
 
   return (
-    <div className='dark:bg-neutral-950 pb-10 h-screen'>   
+    <div className='dark:bg-neutral-950 pb-10 min-h-screen'>   
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>} >
