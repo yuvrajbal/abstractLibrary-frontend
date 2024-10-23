@@ -44,6 +44,8 @@ export default function Header(){
     setDarkMode(newMode);
     localStorage.setItem("darkMode", newMode);
     document.documentElement.classList.toggle("dark", newMode);
+    window.location.reload();
+
   }
 
   return (
