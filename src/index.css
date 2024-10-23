@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body {
+  @apply h-full m-0 p-0; /* Apply full height and reset margin/padding */
+}

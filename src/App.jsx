@@ -11,12 +11,11 @@ import EditBookForm from './components/EditBookCard'
 function App() {
 
   return (
-    <div className='dark:bg-neutral-950 pb-10 min-h-screen'>   
+    <div className='dark:bg-neutral-950 pb-10 h-screen'>   
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout/>} >
             <Route path="" element={<Home/>} />
-
             <Route path="home" element={<Home/>} />
             <Route path="signin" element={<AdminSignin/>} />
             <Route path="admin/createSummary" element={<CreateBookForm/>} />
