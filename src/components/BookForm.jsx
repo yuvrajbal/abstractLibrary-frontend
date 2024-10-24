@@ -1,7 +1,8 @@
-import { UploadButton } from "@uploadthing/react";
+import {UploadButton, generateUploadButton } from "@uploadthing/react";
 
 export default function BookForm({book, setBook , handleCancel , handleSubmission, error}){
   // console.log(REACT_APP_BACKEND_URL)
+  // const UploadButton = generateUploadButton()
   return (
     <form onSubmit={handleSubmission} className="pb-12 ">
     <div className="space-y-12  ">
@@ -73,7 +74,7 @@ export default function BookForm({book, setBook , handleCancel , handleSubmissio
               Book Image
             </label>
             <UploadButton
-                url={`http://localhost:5000/api/uploadthing`}
+                url={`${import.meta.env.VITE_BACKEND_URL}/api/uploadthing`}
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                   console.log("Files: ", res);
