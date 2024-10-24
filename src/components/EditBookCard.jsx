@@ -1,7 +1,7 @@
 import { useState ,useEffect} from 'react'
 import axios from 'axios';
 import BookForm from './BookForm';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditBookForm(){
   
@@ -9,6 +9,7 @@ export default function EditBookForm(){
   const [error,setError] = useState("");
   const token = localStorage.getItem("token");
   const {bookId} = useParams();
+  const navigate = useNavigate()
   // console.log("bookId",bookId);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function EditBookForm(){
       })
       console.log(response.data)
       setBook({title:"", author:"", imageUrl:"", summaryUrl:""})
+      navigate("/admin/editSummary")
     }catch(err){
       console.log("error while creating book summary", err)
     }
@@ -57,7 +59,8 @@ export default function EditBookForm(){
   const handleCancel = async(event) => {
     event.preventDefault();
     setBook({title:"", author:"", imageUrl:"", summaryUrl:""})
-    setError("")
+    setError("");
+    navigate("/admin/editSummary")
 
   }
 

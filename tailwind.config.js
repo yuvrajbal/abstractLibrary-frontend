@@ -7,5 +7,5 @@ module.exports = withUt({
     extend: {},
   },
   plugins: [],
-  darkMode: "selector",
+  darkMode: "class",
 });

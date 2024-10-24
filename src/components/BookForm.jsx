@@ -3,7 +3,7 @@ import { UploadButton } from "@uploadthing/react";
 export default function BookForm({book, setBook , handleCancel , handleSubmission, error}){
   // console.log(REACT_APP_BACKEND_URL)
   return (
-    <form onSubmit={handleSubmission} className="pb-12 dark:bg-neutral-950">
+    <form onSubmit={handleSubmission} className="pb-12 ">
     <div className="space-y-12  ">
       <div className="border-b pb-12   ">
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 dark:text-gray-200 px-6">
