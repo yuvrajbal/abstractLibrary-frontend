@@ -34,7 +34,7 @@ export default function BookForm({book, setBook , handleCancel , handleSubmissio
                   placeholder=""
                   value={book.title}
                   autoComplete="title"
-                  className="ring-1 ring-inset ring-gray-300 block flex-1 border-0  py-1.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded-md"
+                  className="ring-1 ring-inset ring-gray-300 block flex-1 border-0  py-1.5 px-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded-m dark:text-gray-200"
                   onChange={(e) => setBook({...book , title:e.target.value})}
                 />
               </div>
@@ -52,7 +52,7 @@ export default function BookForm({book, setBook , handleCancel , handleSubmissio
                 name="author"
                 type="text"
                 value={book.author}
-                className="px-2 ring-1 ring-inset ring-gray-300 block flex-1 border-0  py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded-md"
+                className="dark:text-gray-200 px-2 ring-1 ring-inset ring-gray-300 block flex-1 border-0  py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded-md"
                 // defaultValue={''}
                 onChange={(e) => setBook({...book , author: e.target.value })}
               />
@@ -70,7 +70,7 @@ export default function BookForm({book, setBook , handleCancel , handleSubmissio
                 id="summaryUrl"
                 name="summaryUrl"
                 value={book.summaryUrl}
-                className="px-2 ring-1 ring-inset ring-gray-300 block flex-1 border-0  py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded-md"
+                className="dark:text-gray-200 px-2 ring-1 ring-inset ring-gray-300 block flex-1 border-0  py-1.5  text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 rounded-md"
                 onChange={(e) => {
                     setBook({...book ,summaryUrl:e.target.value})      
                   }}

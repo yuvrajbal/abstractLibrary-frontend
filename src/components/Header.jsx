@@ -10,8 +10,54 @@ export default function Header(){
       const savedMode = localStorage.getItem("darkMode");
       return savedMode ? JSON.parse(savedMode) : true; // Default to dark mode if no saved preference
     });
+
+    useEffect(() => {
+      // Apply the dark mode class to the document when the component mounts
+      if (darkMode) {
+        document.documentElement.classList.remove("light");
+        document.documentElement.classList.add("dark");
+        document.documentElement.setAttribute("style", "color-scheme:dark;")
+  
+      } else {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.add("light");
+        document.documentElement.setAttribute("style", "color-scheme:light;")
+        
+      }
+    }, [darkMode]);
+
+    const handleModeChange = () =>{
+      const newMode = !darkMode;
+      setDarkMode(newMode);
+      localStorage.setItem("darkMode", newMode);
+      document.documentElement.classList.toggle("dark", newMode);
+  
+    }
+  
+    // useEffect(() => {
+    //   const htmlElement = document.documentElement;
+  
+    //   // Apply mode without waiting for the render
+    //   const applyMode = (mode) => {
+    //     if (mode) {
+    //       htmlElement.classList.add("dark");
+    //       htmlElement.setAttribute("style", "color-scheme: dark;");
+    //     } else {
+    //       htmlElement.classList.remove("dark");
+    //       htmlElement.setAttribute("style", "color-scheme: light;");
+    //     }
+    //   };
+  
+    //   // Apply the saved or default mode
+    //   applyMode(darkMode);
+      
+    //   // Save the user's preference in localStorage
+    //   localStorage.setItem("darkMode", JSON.stringify(darkMode));
+    // }, [darkMode]);
   
   
+
+
   useEffect(() => {
     if(token){
       setIsSignedIn(true)
@@ -27,58 +73,18 @@ export default function Header(){
 
 
   
-  // useEffect(() => {
-  //   // Apply the dark mode class to the document when the component mounts
-  //   if (darkMode) {
-  //     // document.documentElement.classList.remove("light");
-  //     document.documentElement.classList.add("dark");
-  //     document.documentElement.setAttribute("style", "color-scheme:dark;")
-
-  //   } else {
-  //     // document.documentElement.classList.remove("dark");
-  //     document.documentElement.classList.add("light");
-  //     document.documentElement.setAttribute("style", "color-scheme:light;")
-      
-  //   }
-  // }, [darkMode]);
+ 
 
 
-  useEffect(() => {
-    const htmlElement = document.documentElement;
-
-    // Apply mode without waiting for the render
-    const applyMode = (mode) => {
-      if (mode) {
-        htmlElement.classList.add("dark");
-        htmlElement.setAttribute("style", "color-scheme: dark;");
-      } else {
-        htmlElement.classList.remove("dark");
-        htmlElement.setAttribute("style", "color-scheme: light;");
-      }
-    };
-
-    // Apply the saved or default mode
-    applyMode(darkMode);
-    
-    // Save the user's preference in localStorage
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
-
-
+ 
   const handleLogin = () => {
     navigate("/signin")
   }
 
-  // const handleModeChange = () =>{
-  //   const newMode = !darkMode;
-  //   setDarkMode(newMode);
-  //   localStorage.setItem("darkMode", newMode);
-  //   // document.documentElement.classList.toggle("dark", newMode);
 
-  // }
-  const handleModeChange = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
+  // const handleModeChange = () => {
+  //   setDarkMode((prevMode) => !prevMode);
+  // };
 
   return (
     <div className="flex flex-row justify-between dark:bg-neutral-800 px-1 md:px-6 rounded-3xl mb-10 mx-8 py-2">
