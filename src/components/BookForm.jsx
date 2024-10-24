@@ -1,10 +1,20 @@
 import {UploadButton, generateUploadButton } from "@uploadthing/react";
-
+import { useState } from "react";
 export default function BookForm({book, setBook , handleCancel , handleSubmission, error}){
-  // console.log(REACT_APP_BACKEND_URL)
-  // const UploadButton = generateUploadButton()
+
+  const [isSaved, setIsSaved] = useState(false)
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    handleSubmission(); // Call the passed submission function
+    setIsSaved(true);
+
+    setTimeout(() => {
+      setIsSaved(false);
+    }, 3000);
+  };
   return (
-    <form onSubmit={handleSubmission} className="pb-12 ">
+    <form onSubmit={handleFormSubmit} className="pb-12 ">
     <div className="space-y-12  ">
       <div className="border-b pb-12   ">
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 dark:text-gray-200 px-6">
@@ -97,8 +107,10 @@ export default function BookForm({book, setBook , handleCancel , handleSubmissio
                 }}
               
               />
+                <div className="flex justify-center">
+                  {book.imageUrl && <img className="mt-6 rounded-lg w-1/2" src={book.imageUrl} alt="bookcover"></img>}
 
-                {book.imageUrl && <img className="mt-6 rounded-lg w-full" src={book.imageUrl} alt="bookcover"></img>}
+                </div>
 
           </div>
 
@@ -116,7 +128,8 @@ export default function BookForm({book, setBook , handleCancel , handleSubmissio
         className="rounded-md bg-indigo-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 
       >
-        Save
+        {isSaved ? "Saved" : "Save"}
+        
       </button>
     </div>
   </form>

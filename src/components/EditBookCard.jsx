@@ -35,8 +35,8 @@ export default function EditBookForm(){
   },[])
 
 
-  const handleFormSubmission = async(event) => {
-    event.preventDefault();
+  const handleFormSubmission = async () => {
+    // event.preventDefault();
     if(!book.title || !book.author || !book.imageUrl || !book.summaryUrl){
       setError("All fields are required")
       return;
@@ -49,8 +49,8 @@ export default function EditBookForm(){
         }
       })
       console.log(response.data)
-      setBook({title:"", author:"", imageUrl:"", summaryUrl:""})
-      navigate("/admin/editSummary")
+      // setBook({title:"", author:"", imageUrl:"", summaryUrl:""})
+      // navigate("/admin/editSummary")
     }catch(err){
       console.log("error while creating book summary", err)
     }
@@ -67,8 +67,8 @@ export default function EditBookForm(){
   return (
      <div className='sm:w-full sm:mx-auto sm:max-w-md '>
         <h2 
-        className="text-center text-2xl font-bold leading-9 tracking-tight dark:text-gray-200 mt-10 ">
-        Edit {book.title} summary 
+          className="text-center text-l sm:text-2xl font-bold leading-9 tracking-tight dark:text-gray-200 mt-10 px-4 ">
+          Edit {book.title} summary 
         </h2>
         <BookForm 
           book={book} 

@@ -11,7 +11,7 @@ export default function CreateBookForm(){
   const navigate = useNavigate();
 
   const handleFormSubmission = async(event) => {
-    event.preventDefault();
+    // event.preventDefault();
     if(!book.title || !book.author || !book.imageUrl || !book.summaryUrl){
       setError("All fields are required")
       return;

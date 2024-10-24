@@ -39,7 +39,7 @@ export default function FocusCardsEdit() {
         className="text-gray-100 text-xl font-semibold  px-6 py-2 bg-neutral-800 rounded-3xl border-2 border-gray-400 max-w-80"
         onClick={ createBookHandler}
         >Create a book</button>
-    <FocusCards cards={books} mode={"edit"}/>;
+    <FocusCards cards={books} mode={"edit"}/>
 
   </div>
   )
