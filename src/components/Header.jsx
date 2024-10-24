@@ -31,13 +31,14 @@ export default function Header(){
     // Apply the dark mode class to the document when the component mounts
     if (darkMode) {
       document.documentElement.classList.remove("light");
-
       document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("style", "color-scheme:dark;")
+
     } else {
       document.documentElement.classList.remove("dark");
       document.documentElement.classList.add("light");
-
-
+      document.documentElement.setAttribute("style", "color-scheme:light;")
+      
     }
   }, [darkMode]);
 
@@ -50,7 +51,7 @@ export default function Header(){
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem("darkMode", newMode);
-    document.documentElement.classList.toggle("dark", newMode);
+    // document.documentElement.classList.toggle("dark", newMode);
 
   }
 
