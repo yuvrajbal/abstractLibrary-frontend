@@ -6,20 +6,10 @@ export default function Header(){
   const [isSignedIn, setIsSignedIn] = useState(false);
   const[loading,setLoading] = useState(true);
 
-  const [theme, setTheme] = useState("dark"
-      // const savedMode = localStorage.getItem("darkMode");
-      // return savedMode ? JSON.parse(savedMode) : true; // Default to dark mode if no saved preference
-    );
-
-  
-  useEffect(() => {
-    // Apply the dark mode class to the document when the component mounts
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
+  const [darkMode, setDarkMode] = useState(() => {
+      const savedMode = localStorage.getItem("darkMode");
+      return savedMode ? JSON.parse(savedMode) : true; // Default to dark mode if no saved preference
+    });
   
   
   useEffect(() => {
@@ -37,6 +27,19 @@ export default function Header(){
 
 
   
+  useEffect(() => {
+    // Apply the dark mode class to the document when the component mounts
+    if (darkMode) {
+      document.documentElement.classList.remove("light");
+
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+
+
+    }
+  }, [darkMode]);
 
 
   const handleLogin = () => {
@@ -44,8 +47,11 @@ export default function Header(){
   }
 
   const handleModeChange = () =>{
-    setTheme (theme === "dark" ? "light" : "dark")
-  
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("darkMode", newMode);
+    document.documentElement.classList.toggle("dark", newMode);
+
   }
 
   return (
@@ -65,7 +71,7 @@ export default function Header(){
           <button 
             className=""
             onClick={handleModeChange}>
-            {theme === "dark" ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-7">
+            {darkMode? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-7">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
             </svg> : 
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="size-6">
