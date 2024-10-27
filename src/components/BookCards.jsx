@@ -1,6 +1,8 @@
 import { useEffect,useState } from "react";
 import { FocusCards } from "./ui/focus-cards"
 import axios from "axios";
+import { RingLoader } from "react-spinners";
+import { div } from "framer-motion/client";
 export function FocusCardsDemo() {
   const cards = [
     {
@@ -29,6 +31,7 @@ export function FocusCardsDemo() {
     },
   ];
   const[books,setBooks] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     const fetchSummaries = async () => {
       try{
@@ -41,6 +44,7 @@ export function FocusCardsDemo() {
         }))
         setBooks(fetchedBooks);
         console.log("books",books)
+        setIsLoading(false)
       }catch(err){
         console.log("error while fetching summaries", err)
       }
@@ -49,5 +53,20 @@ export function FocusCardsDemo() {
     fetchSummaries()
   }, [])
 
-  return <FocusCards cards={books} mode={""} />;
+  return (
+    <>
+    {isLoading ? (
+      <div className="flex justify-center min-h-screen pt-24">
+        <RingLoader
+        color="#737373"
+        size={100}
+    />
+      </div>
+      
+    ) :(
+    <FocusCards cards={books} mode={""} />
+
+    )}
+
+    </>);
 }
